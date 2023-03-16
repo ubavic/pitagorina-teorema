@@ -38,16 +38,18 @@ const screenToCoordinate = (x, y) => {
 }
 
 class Point {
-    constructor(x, y, id, draggable = null) {
+    constructor(x, y, id, draggable = null, hidden = false) {
         this.x = x;
         this.y = y;
         this.id = id;
         this.draggable = draggable;
         this.dragged = false;
+        this.hidden = hidden;
         points.push(this);
     }
 
     draw() {
+        if(this.hidden) {return}
         const point = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         const [x, y] = coordinateToScreen(this.x, this.y);
         point.setAttribute('cx', `${x}`);
@@ -60,7 +62,6 @@ class Point {
             point.addEventListener('touchend', e => this.dragEnd(e, this));
         }
         svg.getElementById('g-point').appendChild(point);
-
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', `${x - 20}`);
         text.setAttribute('y', `${y + 20}`);
@@ -72,6 +73,7 @@ class Point {
     }
 
     redraw() {
+        if(this.hidden) {return}
         const point = svg.getElementById(this.id);
         const [x, y] = coordinateToScreen(this.x, this.y);
         point.setAttribute('cx', `${x}`);
@@ -217,9 +219,9 @@ class Triangle {
 }
 
 class ProjectedPoint extends Point {
-    constructor(line, point, name) {
+    constructor(line, point, name, hidden) {
         const [x, y] = ProjectedPoint.calculate(line, point);
-        super(x, y, name);
+        super(x, y, name, null, hidden);
         this.line = line;
         this.point = point;
     }
@@ -252,6 +254,31 @@ class ProjectedPoint extends Point {
     }
 }
 
+
+class Rect {
+    constructor(P1, P2, P3, P4) {
+        this.P1 = P1;
+        this.P2 = P2;
+        this.P3 = P3;
+        this.P4 = P4;
+        this.id = [P1.id, P2.id, P3.id, P4.id].sort().reduce((a, b) => a + b, '');
+        squares.push(this);
+    }
+
+    draw() {
+        const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        poly.setAttribute('points', Square.calculatePointsString(this.P1, this.P2, this.P3, this.P4));
+        poly.setAttribute('class', 'poly');
+        poly.setAttribute('id', this.id);
+        svg.getElementById('g-poly').appendChild(poly);
+    }
+
+    redraw() {
+        const poly = svg.getElementById(this.id);
+        poly.setAttribute('points', Square.calculatePointsString(this.P1, this.P2, this.P3, this.P4));
+    }
+}
+
 const construct = () => {
     const A = new Point(0, 0, "Α");
     const B = new Point(1, 0, "Β", 'x');
@@ -262,10 +289,11 @@ const construct = () => {
     const CATK = new Square(C, A, "Θ", "Κ");
 
     new Line(A, B);
-    new Line(B, C);
+    const BC = new Line(B, C);
     new Line(C, A);
 
     const L = new ProjectedPoint(BCED.L2, A, 'Λ');
+    const M = new ProjectedPoint(BC, A, 'Μ', true);
     new Line(A, L, true);
     new Line(A, BCED.P2, true);
     new Line(A, BCED.P1, true);
@@ -276,6 +304,9 @@ const construct = () => {
     new Triangle(A, B, BCED.P2);
     new Triangle(ABZH.P1, B, C);
     new Triangle(BCED.P2, B, L);
+
+    new Rect(M, B, BCED.P2, L);
+    new Rect(C, M, L, BCED.P1);
 
     triangles.forEach(triangle => triangle.draw());
     squares.forEach(square => square.draw());
