@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="canonical" href="https://ubavic.rs/pitagorina_teorema">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="Interaktivni dokaz Pitagorine teoreme">
+    <meta name="author" content="Nikola Ubavić">
+    <title>Pitagorina teorema</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://ubavic.rs/pitagorina_teorema/og.png">
+    <link rel="stylesheet" href="style.css">
+    <style>@import url('https://fonts.googleapis.com/css2?family=Eczar:wght@400;700&display=swap');</style> 
+  </head>
+  <body>
+    <main>
+    <div id="container">
+    <div id="plane">
+        <svg version="1.1" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" id="svg-plane">
+            <g id="g-poly"></g>
+            <g id="g-line"></g>
+            <g id="g-point"></g>
+            <g id="g-text"></g>
+        </svg>
+    </div>
+    <div id="text">
+        <p><strong>Kod pravouglih trouglova je kvadrat na strani spram pravog ugla jednak kvadratima na stranama koje obrazuju prav ugao.</strong></p>
+        <p>Neka se na <em data-type="line">ΒΓ</em> konstruiše kvadrat <em data-type="poly">ΒΔΕΓ</em>, a na <em data-type="line">ΒΑ</em>, <em data-type="line">ΑΓ</em> kvadrati <em data-type="poly" data-target="ΑΒΗΖ">ΗΒ</em>, <em data-type="poly" data-target="ΘΑΓΚ">ΘΓ</em>, kroz tačku <em data-type="point">Α</em> povuče prava <em data-type="line">ΑΛ</em> paralelna svakoj od pravih <em data-type="line">ΒΔ</em>, <em data-type="line">ΓΕ</em>, a zatim povuku prave <em data-type="line">ΑΔ</em>, <em data-type="line">ΖΓ</em>.</p>
+        <p>Pošto je svaki od uglova <em data-type="angle">ΒΑΓ</em>, <em data-type="angle">ΒΑΗ</em> prav, to prave <em data-type="line">ΑΓ</em>, <em data-type="line">ΑΗ</em> povučene nad pravom <em data-type="line">ΒΑ</em>, kroz istu njenu tačku <em data-type="point">Α</em>, a sa raznih strana, čine susedne uglove jednake dvama pravim uglovima, pa su stoga prave <em data-type="line">ΓΑ</em> i <em data-type="line">ΑΗ</em> u istoj pravoj.
+        Iz istog razloga su i prave <em data-type="line">ΒΑ</em> i <em data-type="line">ΑΘ</em> u istoj pravoj.</p>
+        <p>Ugao <em data-type="angle">ΔΒΓ</em> jednak je uglu <em data-type="angle">ΖΒΑ</em>, jer je svaki od njih prav.
+        A kad se doda svakom od njih ugao <em data-type="angle">ΑΒΓ</em>, biće ceo ugao <em data-type="angle">ΔΒΑ</em> jednak celom uglu <em data-type="angle">ΖΒΓ</em>. Pošto je strana <em data-type="line">ΔΒ</em> jednaka strani <em data-type="line">ΒΓ</em>, a <em data-type="line">ΖΒ</em> strani <em data-type="line">ΒΑ</em>, to su dve strane <em data-type="line">ΔΒ</em>, <em data-type="line">ΒΑ</em> jednake stranama <em data-type="line">ΖΒ</em>, <em data-type="line">ΒΓ</em>, i to odgovarajućim, i ugao <em data-type="angle">ΔΒΑ</em> jednak uglu <em data-type="angle">ΖΒΓ</em>, a tada je i osnovica <em data-type="line">ΑΔ</em> jednaka osnovici <em data-type="line">ΖΓ</em>, i trougao <em data-type="tri">ΑΒΔ</em> jednak trouglu <em data-type="tri">ΖΒΓ</em>.</p>
+        <p>A paralelogram <em data-type="poly">ΒΛ</em> je dvaput veći od trougla <em data-type="tri">ΔΒΛ</em>, jer imaju istu osnovicu <em data-type="line">ΒΔ</em> i između istih su paralelnih <em data-type="line">ΒΔ</em>, <em data-type="line">ΑΛ</em>.
+        I kvadrat <em data-type="poly" data-target="ΑΒΗΖ">ΗΒ</em> je dvaput veći od trougla <em data-type="tri">ΖΒΓ</em>, jer i oni imaju istu osnovicu <em data-type="line">ΖΒ</em> i između istih su paralela <em data-type="line">ΖΒ</em>, <em data-type="line" data-target="ΓΑ">ΗΓ</em>.
+        Prema tome je paralelogram <em data-type="poly">ΒΛ</em> jednak kvadratu <em data-type="poly" data-target="ΑΒΗΖ">ΗΒ</em>.
+        Na sličan način se, pomoću povučenih pravih <em data-type="line">ΑΕ</em>, <em data-type="line">ΒΚ</em>, može dokazati da je paralelogram <em data-type="poly">ΓΛ</em> jednak kvadratu <em data-type="poly"  data-target="ΘΑΓΚ">ΘΓ</em>.</p>
+        <p>Prema tome je ceo kvadrat <em data-type="poly">ΒΔΕΓ</em> jednak dvama kvadratima <em data-type="poly" data-target="ΑΒΗΖ">ΗΒ</em>, <em data-type="poly" data-target="ΘΑΓΚ">ΘΓ</em>.
+        A kvadrat <em data-type="poly">ΒΔΕΓ</em> je konstruisan na <em data-type="line">ΒΓ</em>, a kvadrati <em data-type="poly" data-target="ΑΒΗΖ">ΗΒ</em>, <em data-type="poly" data-target="ΘΑΓΚ">ΚΓ</em> na <em data-type="line">ΒΑ</em>, <em data-type="line">ΑΓ</em>.
+        Prema tome je kvadrat na strani <em data-type="line">ΒΓ</em> jednak kvadratima na stranama <em data-type="line">ΒΑ</em>, <em data-type="line">ΑΓ</em>.</p>
+    </div>
+    </div>
+    <footer>
+        47. Stav Euklidove knjige <em>Elemenata</em> poznatiji kao <em>Pitagorina teorema</em>. Po prevodu Antona Bilmovića, priredio <a href="https://ubavic.rs">Nikola Ubavić</a>. Kôd dostupan na <a href="https://github.com/ubavic/pitagorina-teorema">GitHub-u</a>.
+    </footer>
+    </main>
+	<script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+:root {
+    --color-red: #ba3434;
+    --color-beige: #fff6ea;
+    --color-blue: #131630;
+    --footer-height: 2rem;
+}
+
+body {
+    margin: 0;
+    font-family: 'Eczar', serif;
+    font-size: 1.2rem;
+    background-color: var(--color-beige);
+    color: var(--color-blue);
+}
+
+main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+*::selection{
+    background-color: #212547;
+    color: var(--color-beige);
+}
+
+a, a:visited, a:hover {
+    color: var(--color-blue);
+}
+
+#container {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#plane{
+    flex-basis: 50%;
+    min-height: calc(100vh - var(--footer-height));
+}
+
+#plane > svg {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+}
+
+#text {
+    flex-basis: 50%;
+    max-width: 800px;
+    padding: 0 1rem;
+    align-self: center;
+}
+
+#text em {
+    font-style: normal;
+    font-weight: bold;
+    cursor:default;
+    transition: color 0.2s ease-in-out;
+}
+
+#text em:hover {
+    color: var(--color-red);
+}
+
+footer {
+    bottom: 0.5rem;
+    font-size: 0.9rem;
+    left: 0; 
+    right: 0; 
+    margin-left: auto; 
+    margin-right: auto; 
+    text-align: center;
+    height: var(--footer-height);
+}
+
+.point {
+    fill: #212547;
+    transition: fill 0.2s ease-in-out;
+    r: 4px;
+    transition: fill 0.2s ease-in-out, r 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+}
+
+.point-draggable {
+    fill: var(--color-red);
+    stroke: var(--color-blue);
+    stroke-width: 2px;
+}
+
+.point-draggable:hover {
+    fill: #d16b6b;
+    cursor: grab;
+}
+
+.selected-point {
+    stroke-width: 0;
+    fill: var(--color-red);
+    r: 6px
+}
+
+.line {
+    stroke: #212547;
+    stroke-width: 2px;
+    transition: stroke 0.2s ease-in-out, stroke-width 0.2s ease-in-out;
+}
+
+.line-dashed {
+    stroke-width: 1px;
+    stroke-dasharray: 3;
+}
+
+.selected-line {
+    stroke: var(--color-red);
+    stroke-width: 4px;
+}
+
+.text {
+    paint-order: stroke fill;
+    stroke: var(--color-beige);
+    stroke-width: 0.2rem;
+    fill: #212547;
+    font-weight: bold;
+}
+
+.selected-text {
+    fill: var(--color-red);
+}
+
+.poly {
+    fill: transparent;
+    transition: fill 0.2s ease-in-out;
+}
+
+.selected-poly {
+    fill: #d16b6b;
+}
+
+
+@media screen and (max-width:1200px) {
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (orientation: portrait) {
+    #container {
+        flex-direction: column;
+        height: fit-content;
+    }
+
+    #plane{
+        flex-basis: unset;
+    }
+    
+    #text {
+        flex-basis: unset;
+        max-width: 100%;
+    }
+}
