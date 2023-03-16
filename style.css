@@ -151,7 +151,13 @@ footer {
     }
 
     #plane{
+        height: 40vh;
+        min-height: unset;
         flex-basis: unset;
+    }
+
+    #plane > svg {
+        height: 40vh;
     }
     
     #text {
