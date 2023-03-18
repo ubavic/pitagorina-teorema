@@ -84,6 +84,7 @@ class Point {
     }
 
     dragStart(e, point) {
+        e.preventDefault();
         point.dragged = true;
     }
 
@@ -107,13 +108,14 @@ class Point {
     }
 
     dragEnd(e, point) {
+        e.preventDefault();
         point.dragged = false;
     }
 }
 
 class Line {
     constructor(point1, point2, dashed = false) {
-        this.id = [point1.id, point2.id].sort().reduce((a, b) => a + b, '');
+        this.id = [point1.id, point2.id].sort().join('');
         this.point1 = point1;
         this.point2 = point2;
         this.dashed = dashed;
@@ -155,7 +157,7 @@ class Square {
         this.L1 = new Line(point2, this.P1, false);
         this.L2 = new Line(this.P1, this.P2);
         this.L3 = new Line(this.P2, point1);
-        this.id = [point1.id, point2.id, id1, id2].sort().reduce((a, b) => a + b, '');
+        this.id = [point1.id, point2.id, id1, id2].sort().join('');
         squares.push(this);
     }
 
@@ -193,7 +195,7 @@ class Triangle {
         this.point1 = point1;
         this.point2 = point2;
         this.point3 = point3
-        this.id = [point1.id, point2.id, point3.id].sort().reduce((a, b) => a + b, '');
+        this.id = [point1.id, point2.id, point3.id].sort().join('');
         triangles.push(this);
     }
 
@@ -261,7 +263,7 @@ class Rect {
         this.P2 = P2;
         this.P3 = P3;
         this.P4 = P4;
-        this.id = [P1.id, P2.id, P3.id, P4.id].sort().reduce((a, b) => a + b, '');
+        this.id = [P1.id, P2.id, P3.id, P4.id].sort().join('');
         squares.push(this);
     }
 
@@ -341,9 +343,7 @@ const highlightLine = (id, hover) => {
     const sorted = id.split('').sort().reduce((a, b) => a + b, '');
     const lineElement = svg.getElementById(sorted);
 
-    if (!lineElement) {
-        return
-    }
+    if (!lineElement) {return}
 
     if (hover) {
         lineElement.classList.add('selected-line');
@@ -370,9 +370,7 @@ const highlightPoly = (id, hover) => {
     const sorted = id.split('').sort().reduce((a, b) => a + b, '');
     const polyElement = svg.getElementById(sorted);
 
-    if (!polyElement) {
-        return
-    }
+    if (!polyElement) {return}
 
     if (hover) {
         polyElement.classList.add('selected-poly');
